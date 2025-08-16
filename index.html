@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Subramanyam's Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Define custom keyframe animations */
+        /* Scroll reveal for project cards */
+.reveal-card {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: all 0.8s ease;
+}
+.reveal-card.reveal-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Hover shine effect */
+.project-card {
+  position: relative;
+  overflow: hidden;
+}
+.project-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 100%);
+  transform: skewX(-25deg);
+}
+.project-card:hover::after {
+  animation: shine 0.8s forwards;
+}
+@keyframes shine {
+  100% { left: 125%; }
+}
+
+        .about-background {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.gradient-text {
+  background: linear-gradient(90deg, #2563eb, #9333ea, #f43f5e, #2563eb);
+  background-size: 300% 300%;
+  background-clip: text;            /* NEW */
+  -webkit-background-clip: text;    /* NEW for Safari/Chrome */
+  -webkit-text-fill-color: transparent;
+  animation: textFlow 6s ease infinite;
+}
+
+.animated-heading {
+  animation: fadeIn 1s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+
+@keyframes textFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+  z-index: -1;
+  background: linear-gradient(270deg, #0f172a, #1e40af, #7dd3fc, #9333ea, #f43f5e);
+  background-size: 200% 200%;
+  animation: gradientFlow 12s ease infinite;
+}
+/* Float-in effect for skill cards */
+.skill-card {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  animation: skillFadeIn 0.8s ease forwards;
+}
+
+.skill-card:nth-child(1) { animation-delay: 0.2s; }
+.skill-card:nth-child(2) { animation-delay: 0.4s; }
+.skill-card:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes skillFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Hover shine effect */
+.skill-card {
+  position: relative;
+  overflow: hidden;
+}
+.skill-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 100%);
+  transform: skewX(-25deg);
+}
+.skill-card:hover::after {
+  animation: shine 1s forwards;
+}
+@keyframes shine {
+  100% { left: 125%; }
+}
+
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+@keyframes stripeMove {
+  from { background-position: 0 0; }
+  to { background-position: 100px 100px; }
+}
+
+        .iridescence-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: linear-gradient(270deg, #1e3a8a, #2563eb, #7dd3fc, #9333ea, #f43f5e);
+  background-size: 1000% 1000%;
+  animation: iridescence 20s ease infinite;
+}
+
+@keyframes iridescence {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+        .iridescence-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;  /* Make it stay behind */
+  top: 0;
+  left: 0;
+  z-index: -1;         /* Push it behind text */
+  background: linear-gradient(270deg, #1e3a8a, #2563eb, #7dd3fc, #9333ea, #f43f5e);
+  background-size: 1000% 1000%;
+  animation: iridescence 20s ease infinite;
+}
+
+@keyframes iridescence {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes cardPop {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes pulseBorder {
+            0% { box-shadow: 0 0 0 0 rgba(0, 115, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 115, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 115, 255, 0); }
+        }
+
+        /* Apply animations to elements */
+        .animated-text {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animated-heading {
+            animation: fadeIn 1s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .animated-intro {
+            animation: fadeIn 1s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+
+        .animated-nav-item {
+            animation: slideInLeft 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .card-animation {
+            animation: cardPop 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+            opacity: 0;
+        }
+
+        /* Delay for sequential animation */
+        .animated-nav-item:nth-child(1) { animation-delay: 0.1s; }
+        .animated-nav-item:nth-child(2) { animation-delay: 0.2s; }
+        .animated-nav-item:nth-child(3) { animation-delay: 0.3s; }
+        .animated-nav-item:nth-child(4) { animation-delay: 0.4s; }
+        .animated-nav-item:nth-child(5) { animation-delay: 0.5s; }
+        .animated-nav-item:nth-child(6) { animation-delay: 0.6s; }
+
+
+        .card-animation:nth-child(1) { animation-delay: 0.5s; }
+        .card-animation:nth-child(2) { animation-delay: 0.7s; }
+        .card-animation:nth-child(3) { animation-delay: 0.9s; }
+        .card-animation:nth-child(4) { animation-delay: 1.1s; }
+        .card-animation:nth-child(5) { animation-delay: 1.3s; }
+        .card-animation:nth-child(6) { animation-delay: 1.5s; }
+        
+        /* Utility for smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom styles for the hover effect on certificate cards */
+        .certificate-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certificate-details {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            background-color: rgba(17, 24, 39, 0.95);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .certificate-card:hover .certificate-details {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* New hover effect for project cards */
+        .project-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+        }
+        .project-card:hover {
+            transform: translateY(-15px) rotateY(5deg) scale(1.05); /* Increased lift, rotation, and scale */
+            box-shadow: 0 10px 30px rgba(0, 115, 255, 0.3);
+        }
+
+        /* Social media hover effect */
+        .social-link {
+            position: relative;
+            display: inline-block;
+        }
+        .social-link .tooltip {
+            visibility: hidden;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -40px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+        }
+        .social-link:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        .social-link .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-['Inter']">
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-70 backdrop-filter backdrop-blur-lg p-4">
+        <nav class="container mx-auto flex justify-between items-center px-4">
+            <a href="#hero" class="text-xl font-bold rounded-lg px-3 py-1 hover:bg-gray-800 transition-colors duration-300 animated-text">A Subramanyam</a>
+            <div class="flex space-x-6">
+                <a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300 animated-nav-item">About</a>
+                <a href="#skills" class="text-gray-300 hover:text-white transition-colors duration-300 animated-nav-item">Skills</a>
+                <a href="#projects" class="text-gray-300 hover:text-white transition-colors duration-300 animated-nav-item">Projects</a>
+                <a href="#certificates" class="text-gray-300 hover:text-white transition-colors duration-300 animated-nav-item">Certificates</a>
+                <a href="#resume" class="text-gray-300 hover:text-white transition-colors duration-300 animated-nav-item">Resume</a>
+                <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300 animated-nav-item">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-20">
+
+      <section id="hero" class="relative h-screen flex items-center justify-center text-center px-4 overflow-hidden">
+    <!-- Background -->
+    <div class="hero-background absolute inset-0 -z-10"></div>
+
+    <!-- Content -->
+    <div class="relative z-10">
+       <h1 class="text-5xl md:text-7xl font-extrabold text-white animated-heading">
+  Hi, I'm <span class="gradient-text">A Subramanyam</span>.
+</h1>
+
+        <p class="mt-4 text-xl md:text-2xl text-gray-400 animated-intro">
+            I am a passionate <span class="text-blue-400 font-semibold">developer</span> focused on building with Java and web technologies.
+        </p>
+        <div class="mt-8 animated-intro">
+            <a href="#projects" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">View My Work</a>
+            <a href="#contact" class="inline-block ml-4 text-white font-bold py-3 px-8 rounded-full border-2 border-white hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105">Get In Touch</a>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="about" class="relative h-screen flex items-center justify-center px-6 md:px-12 overflow-hidden">
+  <!-- Background -->
+  <canvas id="aboutCanvas" class="about-background absolute inset-0 -z-10"></canvas>
+
+  <!-- Content -->
+  <div class="container mx-auto max-w-5xl relative z-10">
+    <h2 class="text-5xl md:text-6xl font-bold mb-10 text-center text-white animated-text">About Me</h2>
+    
+    <div class="flex flex-col md:flex-row items-center md:items-start text-center md:text-left animated-intro gap-10">
+      
+      <!-- Profile Image -->
+      <img src="profile.jpg" 
+           alt="A photo of me" 
+           class="w-72 h-72 md:w-96 md:h-96 rounded-full object-cover shadow-xl transition-transform duration-300 hover:scale-105"
+           onerror="this.src='https://placehold.co/300x300/4a5568/a0aec0?text=A+Subramanyam'">
+      
+      <!-- Text -->
+      <div class="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl">
+        <p>
+          I am a motivated and detail-oriented Computer Science Engineering student with strong foundational knowledge in programming, web development, and data analytics. 
+          I am passionate about solving real-world problems through technology and am constantly eager to learn and apply new skills. 
+          Known for being a quick learner, team player, and effective communicator with a proactive approach to challenges.
+        </p>
+      </div>
+    </div>
+    
+    <!-- Social Media Links -->
+    <div class="mt-12 text-center animated-intro">
+      <h3 class="text-3xl font-bold text-white mb-6">Find Me Online</h3>
+      <div class="flex justify-center space-x-8 text-gray-400 text-4xl md:text-5xl">
+        <a href="https://github.com/Subbu-co" target="_blank" class="hover:text-white transition-colors duration-300" aria-label="GitHub Profile">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/a-subramanyam-91500624a/" target="_blank" class="hover:text-white transition-colors duration-300" aria-label="LinkedIn Profile">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://x.com/fanofRohit22?t=VQEHaFt62LYqWLeHnBl8SA&s=09" target="_blank" class="hover:text-white transition-colors duration-300" aria-label="X Profile">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+        
+       <section id="skills" class="relative py-20 px-4 bg-gray-800 overflow-hidden">
+    <!-- Background (optional) -->
+    <div class="skills-background absolute inset-0 -z-10"></div>
+
+    <div class="container mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-12 text-white animated-text">My Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Skill Card 1 -->
+            <div class="skill-card card-animation bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 transition-transform duration-300">
+                <h3 class="text-2xl font-bold text-white mb-4">Web Development</h3>
+                <ul class="list-disc list-inside text-gray-400 space-y-2">
+                    <li>HTML5, CSS3, JavaScript</li>
+                    <li>Tailwind CSS</li>
+                    <li>React, Vue.js</li>
+                    <li>Responsive Design</li>
+                </ul>
+            </div>
+
+            <!-- Skill Card 2 -->
+            <div class="skill-card card-animation bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 transition-transform duration-300">
+                <h3 class="text-2xl font-bold text-white mb-4">Backend & Java</h3>
+                <ul class="list-disc list-inside text-gray-400 space-y-2">
+                    <li>Java</li>
+                    <li>Spring Boot</li>
+                    <li>REST APIs</li>
+                    <li>Databases (SQL, NoSQL)</li>
+                </ul>
+            </div>
+
+            <!-- Skill Card 3 -->
+            <div class="skill-card card-animation bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 transition-transform duration-300">
+                <h3 class="text-2xl font-bold text-white mb-4">Tools & Other</h3>
+                <ul class="list-disc list-inside text-gray-400 space-y-2">
+                    <li>Git, GitHub</li>
+                    <li>CI/CD</li>
+                    <li>Cloud Platforms (e.g., AWS, GCP)</li>
+                    <li>Agile Methodologies</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+        
+        <section id="projects" class="py-20 px-4">
+            <div class="container mx-auto" style="perspective: 1000px;">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white animated-text">My Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="project-card card-animation bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-blue-500 transition-colors duration-300">
+                        <img src="Asthrapre.jpg" 
+                             alt="A preview of the Asthra E-commerce Website" 
+                             class="rounded-lg mb-4 w-full h-auto"
+                             onerror="this.src='https://placehold.co/600x400/1f2937/d1d5db?text=Asthra+Preview'">
+                        
+                        <h3 class="2xl font-bold text-white mb-2">Asthra E-commerce Website</h3>
+                        <p class="text-gray-400 mb-4">A complete e-commerce website built with HTML and CSS. The project features multiple pages, including a homepage, product listings, a product detail page with image gallery, a shopping cart, and an account login/registration page. The design is responsive and includes interactive elements like a mobile-friendly menu and a form toggle for login/register.</p>
+                        <div class="flex flex-row space-x-2">
+                          <a href="https://lighthearted-kashata-61c5e9.netlify.app/" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">Launch Project</a>
+                          <a href="https://github.com/Subbu-co/Asthra-Ecommerce.git" target="_blank" class="inline-block text-white font-bold py-2 px-4 rounded-lg border-2 border-white hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105">View Code</a>
+                        </div>
+                    </div>
+                    
+                   <div class="project-card reveal-card bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-blue-500 transition-colors duration-300">
+   <!-- content -->
+ <img src="snakepre.png" 
+                             alt="A preview of the Snake Game" 
+                             class="rounded-lg mb-4 w-full h-auto"
+                             onerror="this.src='https://placehold.co/600x400/1f2937/d1d5db?text=Snake+Game+Preview'">
+                        
+                        <h3 class="2xl font-bold text-white mb-2">Snake Game (p5.js)</h3>
+                        <p class="text-gray-400 mb-4">A classic Snake game created using HTML, CSS, and the p5.js JavaScript library. This project showcases web-based game development fundamentals, including canvas rendering, user input handling with arrow keys, game loop management, collision detection, and score tracking.</p>
+                        <div class="flex flex-row space-x-2">
+                          <a href="https://snakegame45.netlify.app/" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">Launch Project</a>
+                          <a href="https://github.com/Subbu-co/SnakeGame.git" target="_blank" class="inline-block text-white font-bold py-2 px-4 rounded-lg border-2 border-white hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105">View Code</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card card-animation bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-blue-500 transition-colors duration-300">
+                        <h3 class="2xl font-bold text-white mb-2">Java Application</h3>
+                        <p class="text-gray-400 mb-4">A description of a Java-based project, such as a command-line tool, a desktop application, or a Spring Boot service.</p>
+                        <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificates" class="py-20 px-4 bg-gray-800">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white animated-text">Certificates</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card-animation bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-blue-500 transition-colors duration-300">
+                        <h3 class="text-2xl font-bold text-white mb-2">AICTE & Microsoft: Foundations of AI</h3>
+                        <p class="text-gray-400 mb-4">Completed a 4-week virtual internship on Foundations of AI, a Microsoft initiative in collaboration with the All India Council for Technical Education (AICTE).</p>
+                        <div class="mt-4">
+                            <a href="https://drive.google.com/file/d/1Nscbkj8oezmFOCN7RGbVwWT5hbTYXDtT/view?usp=sharing" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">View Certificate</a>
+                        </div>
+                    </div>
+                    <div class="card-animation bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-blue-500 transition-colors duration-300">
+                        <h3 class="text-2xl font-bold text-white mb-2">EISystems & Techieboom: Frontend Development</h3>
+                        <p class="text-gray-400 mb-4">Completed a 12-week internship on Frontend Website Development, followed by submitting a report on TECHIEBOOM.</p>
+                        <div class="mt-4">
+                            <a href="https://drive.google.com/file/d/1ymPM133hZ46trgA_OoguCxh7ALmHJyH-/view?usp=sharing" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">View Certificate</a>
+                        </div>
+                    </div>
+                    <div class="card-animation bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-blue-500 transition-colors duration-300">
+                        <h3 class="text-2xl font-bold text-white mb-2">SkillDzire: Artificial Intelligence (AI)</h3>
+                        <p class="text-gray-400 mb-4">Successfully completed a short-term internship program titled Artificial Intelligence (AI) under SkillDzire in collaboration with Andhra Pradesh State Council of Higher Education.</p>
+                        <div class="mt-4">
+                            <a href="https://drive.google.com/file/d/1JN7Y0TlxtgnVD3IZiV5l6DvwwDNYKLrp/view?usp=sharing" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">View Certificate</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resume" class="py-20 px-4">
+            <div class="container mx-auto max-w-2xl text-center">
+                <h2 class="text-4xl font-bold text-white animated-text">Resume</h2>
+                <p class="text-lg text-gray-300 leading-relaxed mb-8 animated-intro">
+                    I am a motivated and detail-oriented Computer Science Engineering student with strong foundational knowledge in programming, web development, and data analytics. I am passionate about solving real-world problems through technology and am constantly eager to learn and apply new skills. I am known for being a quick learner, team player, and effective communicator with a proactive approach to challenges. You can view or download my complete resume by clicking the button below.
+                </p>
+                <div class="animated-intro">
+                    <a href="https://drive.google.com/file/d/16eFA3rcwe5SJEg0dYEBUW0nFIDU5ay42/view?usp=sharing" download="A_Subramanyam_Resume.pdf" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105">Download Resume</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 px-4 bg-gray-800">
+            <div class="container mx-auto max-w-2xl text-center">
+                <h2 class="text-4xl font-bold text-white animated-text">Get In Touch</h2>
+                <p class="text-lg text-gray-300 leading-relaxed mb-8 animated-intro">
+                    I am currently open to new opportunities. Whether you have a question or just want to say hi, my inbox is always open.
+                </p>
+                <div class="animated-intro">
+                    <a href="mailto:subramanyama889@gmail.com" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105">Send Me an Email</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+       <footer class="bg-gray-900 text-center p-6 text-gray-500">
+        <p>&copy; 2024 A Subramanyam. All rights reserved.</p>
+    </footer>
+
+<script>
+const canvas2 = document.getElementById("aboutCanvas");
+const ctx2 = canvas2.getContext("2d");
+let particles = [];
+
+function resizeCanvas2() {
+  canvas2.width = window.innerWidth;
+  canvas2.height = document.querySelector("#about").offsetHeight;
+}
+resizeCanvas2();
+window.addEventListener("resize", resizeCanvas2);
+
+// Create glowing particles
+for (let i = 0; i < 40; i++) {
+  particles.push({
+    x: Math.random() * canvas2.width,
+    y: Math.random() * canvas2.height,
+    r: Math.random() * 6 + 2,
+    dx: (Math.random() - 0.5) * 0.5,
+    dy: (Math.random() - 0.5) * 0.5
+  });
+}
+
+function animate2() {
+  ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+
+  particles.forEach(p => {
+    ctx2.beginPath();
+    ctx2.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx2.fillStyle = "rgba(100, 200, 255, 0.3)";
+    ctx2.fill();
+
+    // Move particle
+    p.x += p.dx;
+    p.y += p.dy;
+
+    // Bounce off edges
+    if (p.x < 0 || p.x > canvas2.width) p.dx *= -1;
+    if (p.y < 0 || p.y > canvas2.height) p.dy *= -1;
+  });
+
+  requestAnimationFrame(animate2);
+}
+animate2();
+</script>
+<script>
+const revealCards = document.querySelectorAll(".reveal-card");
+
+function revealOnScroll() {
+  const triggerBottom = window.innerHeight * 0.85;
+  
+  revealCards.forEach(card => {
+    const cardTop = card.getBoundingClientRect().top;
+    if (cardTop < triggerBottom) {
+      card.classList.add("reveal-active");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll(); // run once on load
+</script>
+
+
+</body>
+</html>
